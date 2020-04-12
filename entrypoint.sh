@@ -98,26 +98,6 @@ function _clear_log {
         sleep 600
     done
 }
-function _show_feedback {
-  show=false
-  while read line; do
-    if [[ $line =~ "CLI command under processing..." ]]; then
-      show=true
-      echo
-    elif [[ $line =~ "mangos>" ]]; then
-      show=false
-      echo -n "mangos>"
-    elif $show; then
-      echo $line
-    fi
-  done
-}
-
-function _send_commands {
-  while read -p "mangos>" line; do
-    echo "$line" >> /commands
-  done
-}
 
 function _load_config_path () {
     CONFIG_PATH="/config/mangosd.conf"
@@ -145,15 +125,6 @@ function run () {
     touch /log
     _clear_log&
     tail -n 0 -f /commands | mangosd  -c $CONFIG_PATH | tee /log
-}
-
-function terminal () {
-    (tail -f /log 2> /dev/null | _show_feedback) & _send_commands && fg
-}
-
-function exec () {
-    cmd="$*"
-    echo "$cmd" >> /commands
 }
 
 function help () {

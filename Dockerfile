@@ -15,6 +15,8 @@ COPY ${BUILD_PATH}/mangosd.conf .
 
 COPY ./terminal /bin
 
+COPY ./mexec /bin
+
 COPY ./entrypoint.sh /
 
 ENTRYPOINT ["/entrypoint.sh"]
