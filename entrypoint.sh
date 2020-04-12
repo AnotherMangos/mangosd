@@ -127,7 +127,7 @@ function _load_config_path () {
         CONFIG_PATH="$OPTS_CONFIG"
     fi
 
-    if [ ! -d "$CONFIG_PATH" ]
+    if [ ! -f "$CONFIG_PATH" ]
     then
         echo "Invalid path: $CONFIG_PATH"
         exit 1
