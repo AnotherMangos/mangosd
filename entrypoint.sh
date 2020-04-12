@@ -144,7 +144,7 @@ function run () {
     _load_config_path
     touch /log
     _clear_log&
-    tail -n 0 -f /commands | ./mangosd  -c $CONFIG_PATH | tee /log
+    tail -n 0 -f /commands | mangosd  -c $CONFIG_PATH | tee /log
 }
 
 function terminal () {
